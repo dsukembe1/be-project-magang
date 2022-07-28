@@ -1,0 +1,22 @@
+Petanis = kelas6s
+nis
+nama
+nh1
+nh2
+nh3
+uts
+uas
+na
+
+
+Kelompok_tanis = mapel
+id_mapel
+nama_mapel
+
+$response = Kelas6::create($validasi);
+            return response()->json([
+                'success' => true,
+                'message' => 'success'
+            ]);
+
+
