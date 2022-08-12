@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kelas6;
+use App\Models\Kurikulum;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 
-class Kelas6Controller extends Controller
+
+class KurikulumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class Kelas6Controller extends Controller
      */
     public function index()
     {
-        $data=Kelas6::all();
+        $data=Kurikulum::all();
         return response()->json($data); 
     }
 
@@ -39,18 +40,14 @@ class Kelas6Controller extends Controller
     public function store(Request $request)
     {
         $validasi=$request->validate([
-            'nis'=>'required',
-            'nama'=>'required',
-            'nama_mapel'=>'required',
-            'nh1'=>'',
-            'nh2'=>'',
-            'uts'=>'',
-            'uas'=>'',
-            'na'=>''
+            'no_kd'=>'required',
+            'semester'=>'required',
+            'desk'=>'required',
+            'desk_ringkasan'=>'required'
         ]);
 
         try {
-            $response = Kelas6::create($validasi);
+            $response = Kurikulum::create($validasi);
             return response()->json([
                 'success' => true,
                 'message' => 'success'
@@ -71,7 +68,7 @@ class Kelas6Controller extends Controller
      */
     public function show($id)
     {
-        $data=Kelas6::find($id);
+        $data=Kurikulum::find($id);
         return response()->json($data);
     }
 
@@ -83,7 +80,7 @@ class Kelas6Controller extends Controller
      */
     public function edit($id)
     {
-        $data=Kelas6::find($id);
+        $data=Kurikulum::find($id);
         return response()->json($data);
     }
 
@@ -97,18 +94,14 @@ class Kelas6Controller extends Controller
     public function update(Request $request, $id)
     {
         $validasi=$request->validate([
-            'nis'=>'required',
-            'nama'=>'required',
-            'nama_mapel'=>'required',
-            'nh1'=>'',
-            'nh2'=>'',
-            'uts'=>'',
-            'uas'=>'',
-            'na'=>''
+            'no_kd'=>'required',
+            'semester'=>'required',
+            'desk'=>'required',
+            'desk_ringkasan'=>'required'
         ]);
 
         try {
-            $response = Kelas6::find($id);
+            $response = Kurikulum::find($id);
             $response->update($validasi);
             return response()->json([
                 'success' => true,
@@ -131,8 +124,8 @@ class Kelas6Controller extends Controller
     public function destroy($id)
     {
         try {
-            $kelas6=Kelas6::find($id);
-            $kelas6->delete();
+            $kurikulum=Kurikulum::find($id);
+            $kurikulum->delete();
             return response()->json([
                 'success' => true,
                 'message' => 'success'
